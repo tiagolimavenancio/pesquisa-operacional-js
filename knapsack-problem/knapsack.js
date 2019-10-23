@@ -44,7 +44,7 @@ class Knapsack {
         * - Se o item i pesa menos que a capacidade da mochila, podemos incluir.
         * - Na linha i e na coluna j, escolheríamos o valor máximo que podemos obter 
         * sem o item i ou o valor máximo que podemos obter com o item i, o que for maior.
-        * - Excluir: 
+        * 
         */
 
         /**
