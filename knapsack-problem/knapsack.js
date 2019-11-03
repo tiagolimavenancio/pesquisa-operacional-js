@@ -5,11 +5,11 @@ class Knapsack {
         começamos pelo caso base: zero itens com zero valor
         e começamos a encher a mochila
 
-        i - linhas de itens
-        j - colunas de capacidade da mochila
-        n - quantidade de itens (n+1)
-        w - capacidade (w+1)
-        tabela - [n+1][w+1]
+        i - linhas de itens ou objetos
+        j - colunas de capacidade ou peso da mochila
+        amount - quantidade de itens (amount+1)
+        capacity - capacidade (capacity+1)
+        tabela - [amount+1][capacity+1]
     */
 
     /**
@@ -53,27 +53,27 @@ class Knapsack {
          * que representa o valor máximo obtido com todos os itens e a capacidade total da mochila.
          */
 
-    calculate(items, capacity) {
-        const n = items.length
-        const w = capacity
+    calculate(items, backpackCapacity) {
+        const amount = items.length
+        const capacity = backpackCapacity
         let table = []
 
         // Popular o Caso Base
-        for(let i = 0; i < n+1; i++) {
+        for(let i = 0; i < amount+1; i++) {
             table[i]=[]
-            for(let j = 0; j < w+1; j++) {
+            for(let j = 0; j < capacity+1; j++) {
                 table[i][j]=0
             }
         }
 
-        for(let i = 0; i < n+1; i++) { 
-            let item = items[i-1]
-            for (let j = 0; j < w+1; j++) {                 
+        for(let i = 0; i < amount+1; i++) { 
+            let object = items[i-1]
+            for (let j = 0; j < capacity+1; j++) {                 
                 if(i === 0 || j === 0) { 
                     table[i][j] = 0                    
-                } else if(item.weight <= j) {
+                } else if(object.weight <= j) {
                     let excluded = table[i-1][j]
-                    let included = item.value + table[i-1][j-item.weight]                    
+                    let included = object.value + table[i-1][j-object.weight]                    
                     table[i][j] = Math.max(included, excluded)
                 } else {                    
                     table[i][j] = table[i-1][j] 
@@ -88,7 +88,7 @@ class Knapsack {
         //     }            
         // }
 
-        return table[n][w]
+        return table[amount][capacity]
     }
 }
 
